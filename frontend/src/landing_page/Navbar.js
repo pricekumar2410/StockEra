@@ -20,9 +20,10 @@ function Navbar() {
     navigate("/");
   };
 
+  const token = localStorage.getItem("token");
   const handleDashboard = () => {
     // Redirect to dashboard app on port 3004
-    window.location.href = "https://stockera-dashboard.onrender.com";
+    window.location.href = `https://stockera-dashboard.onrender.com/?token=${token}`;
   };
 
   return (
