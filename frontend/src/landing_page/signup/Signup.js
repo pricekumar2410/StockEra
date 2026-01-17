@@ -49,7 +49,7 @@ const Signup = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3002/api/auth/register", {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 email: formData.email,

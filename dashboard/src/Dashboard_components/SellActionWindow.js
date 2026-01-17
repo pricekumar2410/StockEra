@@ -16,7 +16,7 @@ const SellActionWindow = ({ uid }) => {
     // Fetch available quantity from holdings
     useEffect(() => {
         const token = localStorage.getItem("token");
-        axios.get("http://localhost:3002/allHoldings", {
+        axios.get(`${process.env.REACT_APP_API_URL}/allHoldings`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -49,7 +49,7 @@ const SellActionWindow = ({ uid }) => {
             return;
         }
 
-        axios.post("http://localhost:3002/newOrder", {
+        axios.post(`${process.env.REACT_APP_API_URL}/newOrder`, {
             name: uid,
             qty: stockQuantity,
             price: stockPrice,
@@ -60,7 +60,7 @@ const SellActionWindow = ({ uid }) => {
             }
         }).then((res) => {
             // Update holdings after successful sell
-            axios.post("http://localhost:3002/updateHoldings", {
+            axios.post(`${process.env.REACT_APP_API_URL}/updateHoldings`, {
                 name: uid,
                 qtyToRemove: stockQuantity,
             }, {
