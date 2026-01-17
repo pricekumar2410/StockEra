@@ -12,7 +12,7 @@ function HomeHero() {
         <div className="container p-5 mb-3">
             <div className="row text-center">
                 <img src="media/images/homeHero.png" className="mb-5" alt="homeHero"/>
-                <h1>Invest in everything</h1>
+                <h1>Invest in everything in StockEra</h1>
                 <p>Online platform to invest in stocks, derivatives, mutual funds, ETFs, bonds, and more.</p>
                 <button 
                     onClick={handleSignup}

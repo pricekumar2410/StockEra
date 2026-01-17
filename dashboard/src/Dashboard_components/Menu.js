@@ -34,7 +34,7 @@ const Menu = () => {
           <li>
             <Link style={{ textDecoration: "none" }} to="/" onClick={() => handleMenuClick(0)}>
               <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>
-                Dashboard
+                DashBoard
               </p>
             </Link>
           </li>
