@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
- 
+
 function Navbar() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -20,10 +20,17 @@ function Navbar() {
     navigate("/");
   };
 
-  const token = localStorage.getItem("token");
+
   const handleDashboard = () => {
-    // Redirect to dashboard app on port 3004
-    window.location.href = `https://stockera-dashboard.onrender.com/?token=${token}`;
+    // Redirect to dashboard 
+    const token = localStorage.getItem("token");
+    {
+      token && (
+        <a href="https://stockera-dashboard.onrender.com">
+          Dashboard
+        </a>
+      )
+    }
   };
 
   return (
@@ -57,12 +64,12 @@ function Navbar() {
             type="button"
             data-bs-toggle="dropdown"
           >
-            <span className="navbar-toggler-icon" style={{fontSize: "80%"}}></span>
+            <span className="navbar-toggler-icon" style={{ fontSize: "80%" }}></span>
           </button>
 
           {/* Small dropdown box */}
           <ul className="dropdown-menu dropdown-menu-end mt-2 shadow p-3">
-            <h3 style={{color: "#000080"}}>StockEra</h3>
+            <h3 style={{ color: "#000080" }}>StockEra</h3>
             {!user && <li><Link className="dropdown-item" to="/signup">Signup</Link></li>}
             <li><Link className="dropdown-item" to="/about">About</Link></li>
             <li><Link className="dropdown-item" to="/product">Products</Link></li>
@@ -70,8 +77,8 @@ function Navbar() {
             <li><Link className="dropdown-item" to="/support">Support</Link></li>
             {user && (
               <>
-                <li><button onClick={handleDashboard} className="dropdown-item" style={{border: "none", background: "none", cursor: "pointer"}}>Dashboard</button></li>
-                <li><button onClick={handleLogout} className="dropdown-item" style={{border: "none", background: "none", cursor: "pointer", color: "#dc3545"}}>Logout</button></li>
+                <li><button onClick={handleDashboard} className="dropdown-item" style={{ border: "none", background: "none", cursor: "pointer" }}>Dashboard</button></li>
+                <li><button onClick={handleLogout} className="dropdown-item" style={{ border: "none", background: "none", cursor: "pointer", color: "#dc3545" }}>Logout</button></li>
               </>
             )}
           </ul>
@@ -81,7 +88,7 @@ function Navbar() {
     </nav>
 
 
-    );
+  );
 }
 
 export default Navbar;
