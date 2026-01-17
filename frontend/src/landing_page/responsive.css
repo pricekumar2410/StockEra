@@ -1,0 +1,314 @@
+/* Responsive Landing Pages CSS */
+
+/* Global Button Styles */
+.btn-signup-responsive {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-signup-responsive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-signup-responsive:active {
+    transform: translateY(0px);
+}
+
+/* Hero Sections */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 400px;
+    padding: 40px 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    width: 100%;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-content img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Container Responsive */
+.container-responsive {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Grid Layout */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.grid-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.grid-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.grid-item p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Desktop Screens (1024px and above) */
+@media (min-width: 1024px) {
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .btn-signup-responsive {
+        padding: 12px 30px;
+        font-size: 16px;
+        min-width: 160px;
+    }
+}
+
+/* Tablets (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-content h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .btn-signup-responsive {
+        padding: 10px 25px;
+        font-size: 15px;
+        min-width: 140px;
+    }
+
+    .hero-section {
+        min-height: 350px;
+        padding: 30px 20px;
+    }
+}
+
+/* Small Tablets and Large Phones (481px to 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .hero-content h1 {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .btn-signup-responsive {
+        padding: 9px 22px;
+        font-size: 14px;
+        min-width: 130px;
+    }
+
+    .hero-section {
+        min-height: 300px;
+        padding: 25px 15px;
+    }
+
+    .container-responsive {
+        padding: 0 15px;
+    }
+
+    .grid-item {
+        padding: 15px;
+    }
+
+    .grid-item img {
+        max-width: 80%;
+    }
+}
+
+/* Mobile Phones (320px to 480px) */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .hero-content p {
+        font-size: 13px;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .btn-signup-responsive {
+        padding: 8px 20px;
+        font-size: 13px;
+        min-width: 120px;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .hero-section {
+        min-height: 250px;
+        padding: 20px 10px;
+    }
+
+    .container-responsive {
+        padding: 0 10px;
+    }
+
+    .grid-item {
+        padding: 10px;
+    }
+
+    .grid-item img {
+        max-width: 70%;
+    }
+
+    .grid-item p {
+        font-size: 12px;
+        margin: 0 1rem;
+    }
+}
+
+/* Extra Small Phones (up to 320px) */
+@media (max-width: 319px) {
+    .hero-content h1 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .hero-content p {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .btn-signup-responsive {
+        padding: 7px 15px;
+        font-size: 12px;
+        min-width: 100px;
+        width: 100%;
+        max-width: 160px;
+    }
+
+    .hero-section {
+        min-height: 220px;
+        padding: 15px 5px;
+    }
+
+    .container-responsive {
+        padding: 0 5px;
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+.p-5 {
+    padding: 3rem;
+}
+
+.fs-5 {
+    font-size: 1rem;
+}
+
+/* Responsive Image */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Button Hover Effects */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:active {
+    opacity: 0.95;
+}
+
+/* Touch-Friendly Buttons */
+@media (hover: none) and (pointer: coarse) {
+    .btn-signup-responsive {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
