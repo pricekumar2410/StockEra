@@ -7,14 +7,20 @@ import { GeneralContextProvider } from "./GeneralContext";
 const Home = () => {
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+  const urlParams = new URLSearchParams(window.location.search);
+  const tokenFromUrl = urlParams.get("token");
 
-    if (!token) {
-      // Redirect to FRONTEND login page
-      window.location.href =
-        "https://stockera-frontend.onrender.com/login";
-    }
-  }, []);
+  if (tokenFromUrl) {
+    localStorage.setItem("token", tokenFromUrl);
+  }
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    window.location.href =
+      "https://stockera-frontend.onrender.com/login";
+  }
+}, []);
 
   return (
     <GeneralContextProvider>
