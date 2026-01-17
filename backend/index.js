@@ -14,7 +14,11 @@ const { UserModel } = require("./model/UserModel");
 
 const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key";
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET is not defined");
+}
 
 const app = express();
 app.use(cors());
