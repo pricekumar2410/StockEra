@@ -5,12 +5,22 @@ import TopBar from "./TopBar";
 import { GeneralContextProvider } from "./GeneralContext";
 
 const Home = () => {
+
+  useEffect(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tokenFromUrl = urlParams.get("token");
+
+  if (tokenFromUrl) {
+    localStorage.setItem("token", tokenFromUrl);
+  }
+
   const token = localStorage.getItem("token");
 
   if (!token) {
-    return <h2>Please login first</h2>;
+    window.location.href =
+      "https://stockera-frontend.onrender.com/login";
   }
-
+}, []);
 
   return (
     <GeneralContextProvider>
