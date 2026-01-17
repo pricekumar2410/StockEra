@@ -22,7 +22,7 @@ function Navbar() {
 
   const handleDashboard = () => {
     // Redirect to dashboard app on port 3004
-    window.location.href = "http://localhost:3004";
+    window.location.href = "https://stockera-dashboard.onrender.com";
   };
 
   return (
@@ -43,8 +43,8 @@ function Navbar() {
           <li className="nav-item"><Link className="nav-link" to="/support"><b>Support</b></Link></li>
           {user && (
             <>
-              <li className="nav-item"><button onClick={handleDashboard} className="nav-link btn btn-sm btn-primary text-white"><b>Dashboard</b></button></li>
-              <li className="nav-item"><button onClick={handleLogout} className="nav-link btn btn-sm btn-danger text-white"><b>Logout</b></button></li>
+              <li className="nav-item"><button onClick={handleDashboard} className="nav-link"><b>Dashboard</b></button></li>
+              <li className="nav-item"><button onClick={handleLogout} className="nav-link"><b>Logout</b></button></li>
             </>
           )}
         </ul>

@@ -26,7 +26,7 @@ const Login = () => {
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
             // Redirect to dashboard app on port 3004
-            window.location.href = "https://stockera-dashboard.onrender.com";
+            window.location.href = "https://stockera-frontend.onrender.com/";
 
 
         } catch (err) {

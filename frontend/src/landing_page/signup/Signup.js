@@ -63,7 +63,7 @@ const Signup = () => {
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
             // Redirect to dashboard
-            window.location.href = "https://stockera-dashboard.onrender.com";
+            window.location.href = "https://stockera-frontend.onrender.com/";
 
         } catch (err) {
             setError(err.response?.data?.message || "Signup failed. Please try again.");
