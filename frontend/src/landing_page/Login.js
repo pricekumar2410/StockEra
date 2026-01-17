@@ -26,7 +26,9 @@ const Login = () => {
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
             // Redirect to dashboard app on port 3004
-            window.location.href = "http://localhost:3004";
+            window.location.href = "https://stockera-dashboard.onrender.com";
+
+
         } catch (err) {
             setError(err.response?.data?.message || "Login failed. Please try again.");
             console.error("Login error:", err);
