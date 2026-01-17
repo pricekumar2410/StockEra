@@ -12,7 +12,7 @@ const Home = () => {
     if (!token) {
       // Redirect to FRONTEND login page
       window.location.href =
-        "https://stockera-frontend.onrender.com/login";
+        "https://stockera-dashboard.onrender.com";
     }
   }, []);
 
