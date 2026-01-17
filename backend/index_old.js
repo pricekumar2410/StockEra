@@ -9,11 +9,17 @@ const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 300;
 const url = process.env.MONGO_URL;
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3002",
+    "https://stockera-frontend.onrender.com"
+  ],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 

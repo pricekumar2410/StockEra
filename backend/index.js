@@ -21,7 +21,13 @@ if (!JWT_SECRET) {
 }
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3002",
+    "https://stockera-frontend.onrender.com"
+  ],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 // Middleware to verify JWT token
