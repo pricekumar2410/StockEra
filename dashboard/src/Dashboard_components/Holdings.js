@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
+import { VerticalChart } from "./VerticalChart";
 
 // import { holdings } from "../data/data";
 
@@ -11,15 +12,31 @@ const Holdings = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    axios.get(`${process.env.REACT_APP_API_URL}/allHoldings`, { 
+    axios.get(`${process.env.REACT_APP_API_URL}/allHoldings`, {
       headers: {
         "Authorization": `Bearer ${token}`
       }
     }).then((res) => {
       // console.log(res.data);
       setAllHoldings(res.data);
+      context.setAllHoldings(res.data);
+      context.calculateHoldingsMetrics(res.data);
     })
   }, [])
+
+  const labels = allHoldings.map((subArray) => subArray["name"]);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Stock Price',
+        data: allHoldings.map((stock) => stock.price),
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    ],
+  };
+
 
   return (
     <>
@@ -58,7 +75,7 @@ const Holdings = () => {
                 <td className={profClass}>{stock.net}</td>
                 <td className={dayClass}>{stock.day}</td>
                 <td>
-                  <button 
+                  <button
                     onClick={() => context.openSellWindow(stock.name)}
                     style={{
                       padding: "5px 12px",
@@ -83,22 +100,25 @@ const Holdings = () => {
 
       <div className="row">
         <div className="col">
-          <h5>
-            29,875.<span>55</span>{" "}
+          <h5 style={{ display: "flex", alignItems: "center" }}>
+            {Math.floor(context.totalInvestment / 1000)}.<span style={{ fontSize: "x-large", marginTop: "10px" }}>{String(Math.round((context.totalInvestment % 1000) / 10)).padStart(2, '0')}</span>k
           </h5>
           <p>Total investment</p>
         </div>
         <div className="col">
-          <h5>
-            31,428.<span>95</span>{" "}
+          <h5 style={{ display: "flex", alignItems: "center" }}>
+            {Math.floor(context.currentValue / 1000)}.<span style={{ fontSize: "x-large", marginTop: "10px" }}>{String(Math.round((context.currentValue % 1000) / 10)).padStart(2, '0')}</span>k
           </h5>
           <p>Current value</p>
         </div>
         <div className="col">
-          <h5>1,553.40 (+5.20%)</h5>
+          <h5 className={context.pnl >= 0 ? "profit" : "loss"}>
+            {Math.abs(context.pnl).toFixed(2)} ({context.pnlPercentage.toFixed(2)}%)
+          </h5>
           <p>P&L</p>
         </div>
       </div>
+      <VerticalChart data={data} />
     </>
   );
 };

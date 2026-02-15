@@ -103,7 +103,7 @@ code {
   justify-content: space-between;
 }
 
-.table .data > * {
+.table .data>* {
   margin-bottom: 5%;
 }
 
@@ -408,11 +408,11 @@ hr {
 }
 
 .order-table tr td:first-child p {
-    background: rgb(255, 197, 197);
-    color: rgb(233, 120, 120);
-    width: 50%;
-    text-align: center;
-    border-radius: 2px;
+  background: rgb(255, 197, 197);
+  color: rgb(233, 120, 120);
+  width: 50%;
+  text-align: center;
+  border-radius: 2px;
 }
 
 .order-table tr td:last-child {
@@ -465,7 +465,7 @@ hr {
   font-size: 0.8rem;
   color: rgb(153, 153, 153);
   font-weight: 300;
-  margin-top: 2%;
+  margin-top: -12%;
 }
 
 .row .col:last-child h5 {
@@ -602,8 +602,8 @@ hr {
   justify-content: space-evenly;
 }
 
-.nifty > *,
-.sensex > * {
+.nifty>*,
+.sensex>* {
   margin-right: 8px;
 }
 
@@ -693,7 +693,7 @@ hr {
   align-items: center;
 }
 
-.item-info > * {
+.item-info>* {
   margin-right: 8px;
 }
 
@@ -746,6 +746,7 @@ hr {
   color: #fff;
   font-weight: 400;
   font-size: 0.8rem;
+  margin-right: 2rem;
   border: 0.7px solid #ff5722;
 }
 
@@ -812,7 +813,7 @@ hr {
   background-color: #f3f3f3;
 }
 
-.list li:hover > .actions {
+.list li:hover>.actions {
   display: flex;
   cursor: move;
 }
@@ -841,6 +842,3 @@ hr {
 .action:hover {
   background-color: rgb(212, 212, 212);
 }
-
-
-

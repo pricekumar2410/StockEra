@@ -17,27 +17,27 @@ const url = process.env.MONGO_URL;
 const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!JWT_SECRET) {
-  throw new Error("JWT_SECRET is not defined");
+    throw new Error("JWT_SECRET is not defined");
 }
 
 const app = express();
 app.use(cors({
-  origin: [
-    "http://localhost:3002",
-    "https://stockera-frontend.onrender.com"
-  ],
-  credentials: true
+    origin: [
+        "http://localhost:3002",
+        "https://stockera-frontend.onrender.com"
+    ],
+    credentials: true
 }));
 app.use(bodyParser.json());
 
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
-    
+
     if (!token) {
         return res.status(401).json({ message: "No token provided" });
     }
-    
+
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
         req.userId = decoded.userId;
@@ -54,25 +54,25 @@ const verifyToken = (req, res, next) => {
 app.post("/api/auth/register", async (req, res) => {
     try {
         const { firstName, lastName, email, phone, password, confirmPassword } = req.body;
-        
+
         // Validation
         if (!firstName || !lastName || !email || !phone || !password || !confirmPassword) {
             return res.status(400).json({ message: "All fields are required" });
         }
-        
+
         if (password !== confirmPassword) {
             return res.status(400).json({ message: "Passwords do not match" });
         }
-        
+
         // Check if user already exists
         const existingUser = await UserModel.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "Email already registered" });
         }
-        
+
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
-        
+
         // Create new user
         const newUser = new UserModel({
             firstName,
@@ -81,16 +81,16 @@ app.post("/api/auth/register", async (req, res) => {
             phone,
             password: hashedPassword
         });
-        
+
         await newUser.save();
-        
+
         // Generate JWT token
         const token = jwt.sign(
             { userId: newUser._id, email: newUser.email },
             JWT_SECRET,
             { expiresIn: "7d" }
         );
-        
+
         res.status(201).json({
             message: "User registered successfully",
             token,
@@ -112,31 +112,31 @@ app.post("/api/auth/register", async (req, res) => {
 app.post("/api/auth/login", async (req, res) => {
     try {
         const { email, password } = req.body;
-        
+
         // Validation
         if (!email || !password) {
             return res.status(400).json({ message: "Email and password are required" });
         }
-        
+
         // Find user
         const user = await UserModel.findOne({ email });
         if (!user) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
-        
+
         // Compare password
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
-        
+
         // Generate JWT token
         const token = jwt.sign(
             { userId: user._id, email: user.email },
             JWT_SECRET,
             { expiresIn: "7d" }
         );
-        
+
         res.json({
             message: "Login successful",
             token,
@@ -202,23 +202,23 @@ app.post("/newOrder", verifyToken, async (req, res) => {
             price: req.body.price,
             mode: req.body.mode,
         });
-        
+
         await newOrder.save();
-        
+
         // If it's a BUY order, update holdings
         if (req.body.mode === "Buy") {
-            let existingHolding = await HoldingsModel.findOne({ 
+            let existingHolding = await HoldingsModel.findOne({
                 userId: req.userId,
-                name: req.body.name 
+                name: req.body.name
             });
-            
+
             if (existingHolding) {
                 // Update existing holding
                 const totalQty = existingHolding.qty + parseInt(req.body.qty);
                 const newAvgPrice = (
                     (existingHolding.avg * existingHolding.qty + parseFloat(req.body.price) * parseInt(req.body.qty)) / totalQty
                 );
-                
+
                 await HoldingsModel.updateOne(
                     { userId: req.userId, name: req.body.name },
                     {
@@ -241,7 +241,7 @@ app.post("/newOrder", verifyToken, async (req, res) => {
                 await newHolding.save();
             }
         }
-        
+
         res.json({ message: "Order saved!", order: newOrder });
     } catch (error) {
         console.error("Error saving order:", error);
@@ -253,22 +253,22 @@ app.post("/newOrder", verifyToken, async (req, res) => {
 app.post("/updateHoldings", verifyToken, async (req, res) => {
     try {
         const { name, qtyToRemove } = req.body;
-        
-        let holding = await HoldingsModel.findOne({ 
+
+        let holding = await HoldingsModel.findOne({
             userId: req.userId,
-            name: name 
+            name: name
         });
-        
+
         if (!holding) {
             return res.status(404).json({ message: "Holding not found!" });
         }
-        
+
         const newQty = holding.qty - parseInt(qtyToRemove);
-        
+
         if (newQty < 0) {
             return res.status(400).json({ message: "Cannot sell more than available quantity!" });
         }
-        
+
         if (newQty === 0) {
             // Delete holding if quantity becomes 0
             await HoldingsModel.deleteOne({ userId: req.userId, name: name });

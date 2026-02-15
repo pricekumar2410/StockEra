@@ -38,7 +38,8 @@ const SellActionWindow = ({ uid }) => {
 
     const handleSellClick = () => {
         const token = localStorage.getItem("token");
-        
+        const proceeds = parseFloat(stockQuantity) * parseFloat(stockPrice);
+
         if (stockQuantity > availableQty) {
             alert(`Cannot sell more than ${availableQty} units available!`);
             return;
@@ -68,7 +69,20 @@ const SellActionWindow = ({ uid }) => {
                     "Authorization": `Bearer ${token}`
                 }
             }).then(() => {
-                alert("Order placed successfully!");
+                // Add funds back after successful sell
+                const storedFunds = localStorage.getItem("userFunds");
+                let funds = storedFunds ? JSON.parse(storedFunds) : {
+                    availableMargin: 0,
+                    usedMargin: 0,
+                    availableCash: 0,
+                };
+
+                funds.availableMargin += proceeds;
+                funds.usedMargin = Math.max(0, funds.usedMargin - proceeds);
+                funds.availableCash += proceeds;
+
+                localStorage.setItem("userFunds", JSON.stringify(funds));
+                alert(`Order placed! ₹${proceeds.toFixed(2)} added back to your funds.`);
                 generalContext.closeSellWindow();
                 window.location.reload(); // Refresh to show updated holdings
             }).catch((err) => console.log("Error updating holdings:", err));
@@ -100,8 +114,8 @@ const SellActionWindow = ({ uid }) => {
                             value={stockQuantity}
                             max={availableQty}
                         />
-                        <button 
-                            className="max-btn" 
+                        <button
+                            className="max-btn"
                             onClick={handleMaxClick}
                             style={{ marginTop: "5px", padding: "5px 10px", fontSize: "12px" }}
                         >
