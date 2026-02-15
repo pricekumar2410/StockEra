@@ -13,6 +13,8 @@ const BuyActionWindow = ({ uid }) => {
 
     const handleBuyClick = () => {
         const token = localStorage.getItem("token");
+        const totalCost = parseFloat(stockQuantity) * parseFloat(stockPrice);
+
         axios.post(`${process.env.REACT_APP_API_URL}/newOrder`, {
             name: uid,
             qty: stockQuantity,
@@ -22,8 +24,26 @@ const BuyActionWindow = ({ uid }) => {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
+        }).then((res) => {
+            // Deduct funds after successful buy
+            const storedFunds = localStorage.getItem("userFunds");
+            let funds = storedFunds ? JSON.parse(storedFunds) : {
+                availableMargin: 0,
+                usedMargin: 0,
+                availableCash: 0,
+            };
+
+            funds.availableMargin -= totalCost;
+            funds.usedMargin += totalCost;
+            funds.availableCash -= totalCost;
+
+            localStorage.setItem("userFunds", JSON.stringify(funds));
+            alert(`Order placed! ₹${totalCost.toFixed(2)} deducted from your funds.`);
+            generalContext.closeBuyWindow();
+        }).catch((err) => {
+            console.log("Error placing order:", err);
+            alert("Failed to place order. Try again.");
         });
-        generalContext.closeBuyWindow();
     };
 
     const handleCancelClick = () => {

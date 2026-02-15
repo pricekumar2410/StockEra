@@ -9,8 +9,39 @@ import MoreHoriz from "@mui/icons-material/MoreHoriz";
 
 import { watchlist } from "../data/data";
 import GeneralContext from "./GeneralContext";
+import { DoughnutChart } from "./DoughnutChart";
+
+const labels = watchlist.map((subArray) => subArray["name"]);
 
 const WatchList = () => {
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Price',
+        data: watchlist.map((stock) => stock.price),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.5)',
+          'rgba(54, 162, 235, 0.5)',
+          'rgba(255, 206, 86, 0.5)',
+          'rgba(75, 192, 192, 0.5)',
+          'rgba(153, 102, 255, 0.5)',
+          'rgba(255, 159, 64, 0.5)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <div className="watchlist-container">
       <div className="search-container">
@@ -30,6 +61,7 @@ const WatchList = () => {
           )
         })}
       </ul>
+      <DoughnutChart data={data} />
     </div>
   );
 };
@@ -95,9 +127,9 @@ const WatchListActions = ({ uid }) => {
         arrow
         transitionComponent={Grow}
       >
-        <button className="sell" onClick={handleSellClick}>Sell</button>
+        <button className="sell" style={{ marginRight: "4rem", marginBottom: "2rem" }} onClick={handleSellClick}>Sell</button>
       </Tooltip>
-      <Tooltip
+      {/* <Tooltip
         title="Analytics (S)"
         placement="top"
         arrow
@@ -106,8 +138,8 @@ const WatchListActions = ({ uid }) => {
         <button className="action">
           <BarChartOutlined className="icon" />
         </button>
-      </Tooltip>
-      <Tooltip
+      </Tooltip> */}
+      {/* <Tooltip
         title="More"
         placement="top"
         arrow
@@ -116,25 +148,7 @@ const WatchListActions = ({ uid }) => {
         <button className="action">
           <MoreHoriz className="icon" />
         </button>
-      </Tooltip>
+      </Tooltip> */}
     </span>
   </span>
 }
-
-/*
-Uncaught runtime errors:
-×
-ERROR
-_GeneralContext__WEBPACK_IMPORTED_MODULE_3__.default.closeBuyWindow is not a function
-TypeError: _GeneralContext__WEBPACK_IMPORTED_MODULE_3__.default.closeBuyWindow is not a function
-    at handleCancelClick (http://localhost:3000/static/js/bundle.js:56978:61)
-    at handleClick (http://localhost:3000/static/js/bundle.js:49528:18)
-    at executeDispatch (http://localhost:3000/static/js/bundle.js:33582:7)
-    at runWithFiberInDEV (http://localhost:3000/static/js/bundle.js:24934:68)
-    at processDispatchQueue (http://localhost:3000/static/js/bundle.js:33610:31)
-    at http://localhost:3000/static/js/bundle.js:33907:7
-    at batchedUpdates$1 (http://localhost:3000/static/js/bundle.js:26225:38)
-    at dispatchEventForPluginEventSystem (http://localhost:3000/static/js/bundle.js:33686:5)
-    at dispatchEvent (http://localhost:3000/static/js/bundle.js:35884:31)
-    at dispatchDiscreteEvent (http://localhost:3000/static/js/bundle.js:35866:58)
-*/

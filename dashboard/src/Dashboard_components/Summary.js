@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
+import GeneralContext from "./GeneralContext";
 
 const Summary = () => {
   const [user, setUser] = useState(null);
+  const context = React.useContext(GeneralContext);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    const handleStorage = (e) => {
+      if (e.key === "user") {
+        const newVal = e.newValue;
+        setUser(newVal ? JSON.parse(newVal) : null);
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   const userName = user ? `${user.firstName} ${user.lastName}` : "User";
@@ -26,7 +38,7 @@ const Summary = () => {
 
         <div className="data">
           <div className="first">
-            <h3>3.74k</h3>
+            <h3>{(context.marginAvailable / 1000).toFixed(2)}k</h3>
             <p>Margin available</p>
           </div>
           <hr />
@@ -36,7 +48,7 @@ const Summary = () => {
               Margins used <span>0</span>{" "}
             </p>
             <p>
-              Opening balance <span>3.74k</span>{" "}
+              Opening balance <span>{(context.openingBalance / 1000).toFixed(2)}k</span>{" "}
             </p>
           </div>
         </div>
@@ -45,13 +57,13 @@ const Summary = () => {
 
       <div className="section">
         <span>
-          <p>Holdings (13)</p>
+          <p>Holdings ({context.allHoldings.length})</p>
         </span>
 
         <div className="data">
           <div className="first">
-            <h3 className="profit">
-              1.55k <small>+5.20%</small>{" "}
+            <h3 className={context.pnl >= 0 ? "profit" : "loss"}>
+              {(context.pnl / 1000).toFixed(2)}k <small>{context.pnlPercentage.toFixed(2)}%</small>{" "}
             </h3>
             <p>P&L</p>
           </div>
@@ -59,10 +71,10 @@ const Summary = () => {
 
           <div className="second">
             <p>
-              Current Value <span>31.43k</span>{" "}
+              Current Value <span>{(context.currentValue / 1000).toFixed(2)}k</span>{" "}
             </p>
             <p>
-              Investment <span>29.88k</span>{" "}
+              Investment <span>{(context.totalInvestment / 1000).toFixed(2)}k</span>{" "}
             </p>
           </div>
         </div>
