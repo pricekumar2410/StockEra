@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import BuyActionWindow from "./BuyActionWindow";
 import SellActionWindow from './SellActionWindow'
@@ -28,6 +29,27 @@ export const GeneralContextProvider = (props) => {
   const [pnlPercentage, setPnlPercentage] = useState(0.0);
   const [marginAvailable, setMarginAvailable] = useState(0.0);
   const [openingBalance, setOpeningBalance] = useState(0.0);
+  const [user, setUser] = useState(null);
+
+  const fetchUser = async (token) => {
+    if (!token) return null;
+    try {
+      const apiBase = process.env.REACT_APP_API_URL || "https://stockera-backend-kosq.onrender.com";
+      const res = await axios.get(`${apiBase}/api/auth/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res && res.data) {
+        setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        return res.data;
+      }
+    } catch (err) {
+      console.error("fetchUser error:", err?.message || err);
+      setUser(null);
+      localStorage.removeItem("user");
+    }
+    return null;
+  };
 
   const calculateHoldingsMetrics = (holdings) => {
     const totalInv = holdings.reduce((sum, stock) => sum + (stock.avg * stock.qty), 0);
@@ -62,6 +84,31 @@ export const GeneralContextProvider = (props) => {
     };
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  useEffect(() => {
+    // On provider mount, if there's a token but no user, try to fetch user
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try { setUser(JSON.parse(storedUser)); } catch { setUser(null); }
+    } else if (token) {
+      fetchUser(token);
+    }
+
+    const handleStorage = (e) => {
+      if (e.key === "user") {
+        setUser(e.newValue ? JSON.parse(e.newValue) : null);
+      }
+      if (e.key === "token") {
+        // token changed elsewhere; try to refresh user
+        const newToken = e.newValue;
+        if (newToken) fetchUser(newToken);
+        else setUser(null);
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   const handleOpenBuyWindow = (uid) => {
@@ -101,6 +148,9 @@ export const GeneralContextProvider = (props) => {
         marginAvailable,
         openingBalance,
         updateFundsMetrics,
+        user,
+        setUser,
+        fetchUser,
       }}
     >
       {props.children}

@@ -38,14 +38,15 @@ function Navbar() {
 
         {/* CENTER: Menu (Desktop only) */}
         <ul className="navbar-nav flex-row mx-auto d-none d-lg-flex gap-4">
-          {user && <li className="nav-item"><button onClick={handleDashboard} className="nav-link"><b>Dashboard</b></button></li>}
           <li className="nav-item"><Link className="nav-link" to="/"><b>Home</b></Link></li>
           <li className="nav-item"><Link className="nav-link" to="/about"><b>About</b></Link></li>
           <li className="nav-item"><Link className="nav-link" to="/product"><b>Products</b></Link></li>
           <li className="nav-item"><Link className="nav-link" to="/pricing"><b>Pricing</b></Link></li>
           <li className="nav-item"><Link className="nav-link" to="/support"><b>Support</b></Link></li>
           {!user && <li className="nav-item"><Link className="nav-link" aria-current="page" to="/signup"><b>Signup</b></Link></li>}
-          {user && <li className="nav-item"><button onClick={handleLogout} className="nav-link"><b>Logout</b></button></li>}
+          {user && <li className="nav-item"><button onClick={handleDashboard} className="nav-link"><b>Dashboard</b></button></li>}
+
+          {/* {user && <li className="nav-item"><button onClick={handleLogout} className="nav-link"><b>Logout</b></button></li>} */}
         </ul>
 
         {/* RIGHT: Hamburger Dropdown */}

@@ -2,26 +2,8 @@ import React, { useEffect, useState } from "react";
 import GeneralContext from "./GeneralContext";
 
 const Summary = () => {
-  const [user, setUser] = useState(null);
   const context = React.useContext(GeneralContext);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    const handleStorage = (e) => {
-      if (e.key === "user") {
-        const newVal = e.newValue;
-        setUser(newVal ? JSON.parse(newVal) : null);
-      }
-    };
-
-    window.addEventListener("storage", handleStorage);
-
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
-
+  const user = context.user;
   const userName = user ? `${user.firstName} ${user.lastName}` : "User";
 
   return (

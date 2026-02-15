@@ -24,7 +24,9 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:3002",
-        "https://stockera-frontend.onrender.com"
+        "https://stockera-frontend.onrender.com",
+        "https://stockera-dashboard.onrender.com",
+        "https://stockera-dashboard-kosq.onrender.com"
     ],
     credentials: true
 }));

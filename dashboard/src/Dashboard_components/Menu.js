@@ -1,28 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import { Link } from "react-router-dom"
+import GeneralContext from "./GeneralContext";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Get user data from localStorage
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    const handleStorage = (e) => {
-      if (e.key === "user") {
-        setUser(e.newValue ? JSON.parse(e.newValue) : null);
-      }
-    };
-
-    window.addEventListener("storage", handleStorage);
-
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
+  const context = React.useContext(GeneralContext);
+  const user = context.user;
   // refs for closing dropdown when clicking outside
   const profileRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -55,9 +39,9 @@ const Menu = () => {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    setUser(null);
+    if (context.setUser) context.setUser(null);
     setIsProfileDropdownOpen(false);
-    // reload or redirect to landing/login
+    // reload to reflect logged-out state
     window.location.href = "/";
   }
 
