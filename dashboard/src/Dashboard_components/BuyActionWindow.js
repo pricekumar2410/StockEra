@@ -12,8 +12,22 @@ const BuyActionWindow = ({ uid }) => {
     const generalContext = useContext(GeneralContext);
 
     const handleBuyClick = () => {
-        const token = localStorage.getItem("token");
         const totalCost = parseFloat(stockQuantity) * parseFloat(stockPrice);
+
+        // Check available funds
+        const storedFunds = localStorage.getItem("userFunds");
+        const funds = storedFunds ? JSON.parse(storedFunds) : {
+            availableMargin: 0,
+            usedMargin: 0,
+            availableCash: 0,
+        };
+
+        if (totalCost > funds.availableCash) {
+            alert(`Insufficient funds! Required: ₹${totalCost.toFixed(2)}, Available: ₹${funds.availableCash.toFixed(2)}`);
+            return;
+        }
+
+        const token = localStorage.getItem("token");
 
         axios.post(`${process.env.REACT_APP_API_URL}/newOrder`, {
             name: uid,
@@ -26,18 +40,13 @@ const BuyActionWindow = ({ uid }) => {
             }
         }).then((res) => {
             // Deduct funds after successful buy
-            const storedFunds = localStorage.getItem("userFunds");
-            let funds = storedFunds ? JSON.parse(storedFunds) : {
-                availableMargin: 0,
-                usedMargin: 0,
-                availableCash: 0,
+            const updatedFunds = {
+                availableMargin: funds.availableMargin - totalCost,
+                usedMargin: funds.usedMargin + totalCost,
+                availableCash: funds.availableCash - totalCost,
             };
 
-            funds.availableMargin -= totalCost;
-            funds.usedMargin += totalCost;
-            funds.availableCash -= totalCost;
-
-            localStorage.setItem("userFunds", JSON.stringify(funds));
+            localStorage.setItem("userFunds", JSON.stringify(updatedFunds));
             alert(`Order placed! ₹${totalCost.toFixed(2)} deducted from your funds.`);
             generalContext.closeBuyWindow();
         }).catch((err) => {
