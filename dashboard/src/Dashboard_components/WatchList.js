@@ -14,6 +14,8 @@ import { DoughnutChart } from "./DoughnutChart";
 const labels = watchlist.map((subArray) => subArray["name"]);
 
 const WatchList = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredWatchlist, setFilteredWatchlist] = useState(watchlist);
 
   const data = {
     labels,
@@ -42,25 +44,54 @@ const WatchList = () => {
     ],
   };
 
+  const handleSearchChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query === "") {
+      setFilteredWatchlist(watchlist);
+    } else {
+      const filtered = watchlist.filter(stock =>
+        stock.name.toLowerCase().includes(query)
+      );
+      setFilteredWatchlist(filtered);
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+    setFilteredWatchlist(watchlist);
+  };
+
   return (
     <div className="watchlist-container">
       <div className="search-container">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Search eg:infy, bse, nifty fut weekly, gold mcx"
-          className="search"
-        />
-        <span className="counts"> {watchlist.length} / 50</span>
+        <div className="search-wrapper">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search eg:infy, bse, nifty fut weekly, gold mcx"
+            className="search"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          {searchQuery && (
+            <button className="search-clear-btn" onClick={handleClearSearch} title="Clear search">
+              ✕
+            </button>
+          )}
+        </div>
+        <span className="counts"> {filteredWatchlist.length} / 50</span>
       </div>
       <ul className="list">
-        {watchlist.map((stock, index) => {
+        {filteredWatchlist.map((stock, index) => {
           return (
             <WatchListItem stock={stock} key={index} />
           )
         })}
       </ul>
+      <br />
       <DoughnutChart data={data} />
     </div>
   );
@@ -85,14 +116,14 @@ const WatchListItem = ({ stock }) => {
   return (
     <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="item">
-        <p className={stock.isDown ? "down" : "up"}>{stock.name}</p>
+        <p>{stock.name}</p>
         <div className="itemInfo">
-          <span className="percent">{stock.percent}</span>
+          <span className={`percent ${stock.isDown ? "down" : "up"}`}>{stock.percent}</span>
           {stock.isDown ?
             (<KeyboardArrowDown className="down" />) :
-            (<KeyboardArrowUp className="down" />)
+            (<KeyboardArrowUp className="up" />)
           }
-          <span className="price">{stock.price}</span>
+          <span style={{ color: "blue" }}>{stock.price}</span>
         </div>
       </div>
       {showWatchListActions && <WatchListActions uid={stock.name} />}

@@ -40,28 +40,28 @@ const Home = () => {
 
     const token = localStorage.getItem("token");
 
-    if (!token) {
-      window.location.href = "https://stockera-frontend.onrender.com/login";
-    } else {
-      // ensure user is present in localStorage; if not, try to fetch
-      const storedUser = localStorage.getItem("user");
-      if (!storedUser) {
-        (async () => {
-          try {
-            const apiBase = process.env.REACT_APP_API_URL || "https://stockera-backend-kosq.onrender.com";
-            const res = await axios.get(`${apiBase}/api/auth/me`, {
-              headers: { Authorization: `Bearer ${token}` },
-            });
-            if (res && res.data) {
-              localStorage.setItem("user", JSON.stringify(res.data));
-              // no reload needed; components may need to read though
-            }
-          } catch (err) {
-            console.error("Failed to fetch user with stored token:", err.message || err);
-          }
-        })();
-      }
-    }
+    // if (!token) {
+    //   window.location.href = "https://stockera-frontend.onrender.com/login";
+    // } else {
+    //   // ensure user is present in localStorage; if not, try to fetch
+    //   const storedUser = localStorage.getItem("user");
+    //   if (!storedUser) {
+    //     (async () => {
+    //       try {
+    //         const apiBase = process.env.REACT_APP_API_URL || "https://stockera-backend-kosq.onrender.com";
+    //         const res = await axios.get(`${apiBase}/api/auth/me`, {
+    //           headers: { Authorization: `Bearer ${token}` },
+    //         });
+    //         if (res && res.data) {
+    //           localStorage.setItem("user", JSON.stringify(res.data));
+    //           // no reload needed; components may need to read though
+    //         }
+    //       } catch (err) {
+    //         console.error("Failed to fetch user with stored token:", err.message || err);
+    //       }
+    //     })();
+    //   }
+    // }
   }, []);
 
   return (
