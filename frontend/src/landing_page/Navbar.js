@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import "../Style CSS/navbar.css";
 
 function Navbar() {
   const [user, setUser] = useState(null);
@@ -28,12 +29,13 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-light bg-light fixed-top border-bottom">
+    <nav className="navbar fixed-top border-bottom" style={{ backgroundColor: "#0F2854", color: "#FFFFFF" }}>
       <div className="container d-flex align-items-center">
 
         {/* LEFT: Logo */}
-        <Link className="navbar-brand" to="/">
-          <img src="media/images/s3.png" style={{ width: "120px" }} />
+        <Link className="navbar-brand" to="/" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <img src="media/images/S_Logo.png" style={{ width: "60px", borderRadius: "4px" }} />
+          <h4 style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "4px", marginLeft: "4px", color: "red", fontWeight: "30px" }}>Stock<span style={{ color: "white" }}>Era</span></h4>
         </Link>
 
         {/* CENTER: Menu (Desktop only) */}
@@ -61,7 +63,7 @@ function Navbar() {
 
           {/* Small dropdown box: only StockEra heading, user name, email and logout */}
           <ul className="dropdown-menu dropdown-menu-end mt-2 shadow p-3">
-            <h3 style={{ color: "#000080", marginBottom: "8px" }}>StockEra</h3>
+            <h3 style={{ color: "#0F2854", marginBottom: "8px" }}>StockEra</h3>
             <div className="px-2 py-2">
               <div style={{ fontWeight: 700 }}>{user ? `${user.firstName} ${user.lastName}` : "User"}</div>
               <div style={{ fontSize: 12, color: "#666" }}>{user ? user.email : "No email"}</div>
