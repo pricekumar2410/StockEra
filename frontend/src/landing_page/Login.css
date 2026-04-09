@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #1E3A8A 0%, #7DD3FC 100%);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
 }
@@ -15,6 +15,12 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
+}
+
+.login-box:hover {
+    border: 2px solid blue;
+    box-shadow: 0 2px 25px rgba(255, 0, 0, 0.8);
+    scale: 1.05;
 }
 
 .login-header {
@@ -77,12 +83,12 @@
 .login-btn {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #1E3A8A 0%, #7DD3FC 100%);
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     margin-top: 10px;
@@ -90,7 +96,10 @@
 
 .login-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    border: 2px solid blue;
+    background: white;
+    color: red;
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.8);
 }
 
 .login-btn:disabled {
@@ -113,7 +122,8 @@
 }
 
 .signup-link:hover {
-    color: #764ba2;
+    color: blue;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
 }
 
 /* Responsive Design */
@@ -211,4 +221,3 @@
         font-size: 13px;
     }
 }
-

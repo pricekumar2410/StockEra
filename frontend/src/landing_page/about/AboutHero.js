@@ -2,51 +2,80 @@ import React from 'react'
 
 function AboutHero() {
     return (
-        <div className='container'>
-            <div className='row p-5 mt-5 mb-5'>
-                <h4 className='text-muted text-center'>
-                    We are redefining the way India invests.
-                    <br /> Simple. Transparent. Technology-driven.
-                </h4>
-            </div>
+        <>
+            <style>
+                {`
+    .AboutHeroMainDiv1{
+        background: white;
+        color: #333333;
+        border-radius: 12px;
+        margin-top: 26px;
+    }
+    .AboutHeroMainDiv1:hover{
+        background: linear-gradient(90deg, #0F2854 0%, #2563EB 100%);
+color: #fdbb2d;
+    }
+         .AboutHeroMainDiv2{
+        background: white;
+        color: #333333;
+        border-radius: 5px;
+    }
+    .AboutHeroMainDiv2:hover{
+        background: linear-gradient(90deg, #1E3A8A 0%, #7DD3FC 100%);
+    color: white;
+                }
+    `}
+            </style>
+            <div  >
+                <div className='container '>
+                    <div className='row p-5 AboutHeroMainDiv1'>
+                        <h3 className=' text-center'>
+                            Making investing simple for everyone.
+                            <br /> Easy. Transparent. Beginner-friendly.
+                        </h3>
+                    </div>
 
-            <div className='row border-top p-3' style={{ fontSize: "18px" }}>
-                <div className='col p-5 text-muted'>
-                    <p>
-                        Our journey began with a simple mission — to make investing accessible and affordable for everyone.
-                        We built our platform to remove unnecessary costs, complicated processes, and outdated systems.
-                    </p>
+                    <div className='row border-top p-1 AboutHeroMainDiv2' style={{ fontSize: "18px" }}>
+                        <div className='col p-5 '>
+                            <p>
+                                Our journey started with a simple goal — to make investing easy and accessible for everyone.
+                                We wanted to remove confusion, high costs, and complicated processes from trading.
+                            </p>
 
-                    <p>
-                        With transparent pricing and modern technology, we aim to provide a smooth and reliable
-                        trading experience for beginners as well as experienced investors.
-                    </p>
+                            <p>
+                                Our platform is designed especially for beginners, with a clean interface and easy-to-use features.
+                                Anyone can start their investment journey without feeling overwhelmed.
+                            </p>
 
-                    <p>
-                        Today, thousands of users trust our platform to manage their investments with confidence
-                        and ease.
-                    </p>
+                            <p>
+                                We focus on transparency and simplicity, so users always understand what they are doing
+                                and feel confident while investing.
+                            </p>
+                        </div>
+
+                        <div className='col p-5' style={{ fontSize: "18px" }}>
+                            <p>
+                                Along with trading, we also aim to spread financial awareness and help users
+                                make better money decisions.
+                            </p>
+
+                            <p>
+                                We provide simple tools, basic market insights, and a secure environment
+                                to support your learning and growth.
+                            </p>
+
+                            <p>
+                                Our goal is to keep improving and build a platform that makes investing
+                                easier every day.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
-
-                <div className='col p-5 text-muted' style={{ fontSize: "18px" }}>
-                    <p>
-                        Beyond trading, we focus on financial education and empowering individuals
-                        to make smarter money decisions.
-                    </p>
-
-                    <p>
-                        Our platform offers user-friendly tools, real-time insights, and secure systems
-                        to help you stay ahead in the market.
-                    </p>
-
-                    <p>
-                        We continue to innovate every day, building solutions that simplify investing
-                        and create long-term value for our community.
-                    </p>
-                </div>
+                <hr style={{ margin: "0px", opacity: "0.07" }} />
             </div>
+        </>
 
-        </div>
     );
 }
 

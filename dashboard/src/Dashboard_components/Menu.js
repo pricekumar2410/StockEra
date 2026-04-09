@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import GeneralContext from "./GeneralContext";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
   const context = React.useContext(GeneralContext);
   const user = context.user;
-  // refs for closing dropdown when clicking outside
+
   const profileRef = useRef(null);
   const dropdownRef = useRef(null);
 
@@ -30,78 +31,76 @@ const Menu = () => {
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
-  }
+  };
 
   const handleProfileClick = () => {
-    setIsProfileDropdownOpen((v) => !v);
-  }
+    setIsProfileDropdownOpen((prev) => !prev);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     if (context.setUser) context.setUser(null);
     setIsProfileDropdownOpen(false);
-    // reload to reflect logged-out state
     window.location.href = "/";
-  }
+  };
 
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
 
   return (
     <div className="menu-container">
-      <img src="images/dashboardLogo.png" style={{ width: "30px" }} />
+      <img src="images/dashboardLogo.png" style={{ width: "30px" }} alt="logo" />
+
       <div className="menus" style={{ position: "relative" }}>
         <ul>
           <li>
-            <Link style={{ textDecoration: "none" }} to="/" onClick={() => handleMenuClick(0)}>
-              <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>
-                DashBoard
-              </p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }} to="/orders" onClick={() => handleMenuClick(1)}>
-              <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>
-                Orders
-              </p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }} to="/holdings" onClick={() => handleMenuClick(2)}>
-              <p className={selectedMenu === 2 ? activeMenuClass : menuClass}>
-                Holdings
-              </p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }} to="/positions" onClick={() => handleMenuClick(3)}>
-              <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>
-                Positions
-              </p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }} to="/funds" onClick={() => handleMenuClick(4)}>
-              <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>
-                Funds
-              </p>
+            <Link to="/" onClick={() => handleMenuClick(0)} style={{ textDecoration: "none" }}>
+              <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>Dashboard</p>
             </Link>
           </li>
 
+          <li>
+            <Link to="/orders" onClick={() => handleMenuClick(1)} style={{ textDecoration: "none" }}>
+              <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>Orders</p>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/holdings" onClick={() => handleMenuClick(2)} style={{ textDecoration: "none" }}>
+              <p className={selectedMenu === 2 ? activeMenuClass : menuClass}>Holdings</p>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/positions" onClick={() => handleMenuClick(3)} style={{ textDecoration: "none" }}>
+              <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>Positions</p>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/funds" onClick={() => handleMenuClick(4)} style={{ textDecoration: "none" }}>
+              <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>Funds</p>
+            </Link>
+          </li>
         </ul>
+
         <hr />
+
+        {/* ✅ PROFILE (Only Avatar visible) */}
         <div className="profile" ref={profileRef}>
-          <div className="avatar" onClick={handleProfileClick} style={{ cursor: "pointer" }}>
-            {user ? `${user.firstName?.charAt(0)}${user.lastName?.charAt(0)}`.toUpperCase() : "ZU"}
-          </div>
-          <div className="user-info">
-            <p className="username">{user ? `${user.firstName} ${user.lastName}` : "User"}</p>
-            <p className="user-email" style={{ fontSize: "12px", color: "#666", margin: "2px 0" }}>
-              {user ? user.email : "No email"}
-            </p>
+          <div
+            className="avatar"
+            onClick={handleProfileClick}
+            style={{ cursor: "pointer", marginRight: "3em", marginLeft: "1rem" }}
+          >
+            {user
+              ? `${user.firstName?.charAt(0)}${user.lastName?.charAt(0)}`.toUpperCase()
+              : "ZU"}
           </div>
         </div>
+
+        {/* ✅ DROPDOWN */}
         {isProfileDropdownOpen && (
           <div
             ref={dropdownRef}
@@ -118,17 +117,50 @@ const Menu = () => {
               minWidth: "180px",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-              <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#2b6cb0", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600 }}>
-                {user ? `${user.firstName?.charAt(0)}${user.lastName?.charAt(0)}`.toUpperCase() : "U"}
+            <div style={{ display: "flex", gap: "10px", marginBottom: "8px" }}>
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  background: "#2b6cb0",
+                  color: "#fff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontWeight: 600,
+                }}
+              >
+                {user
+                  ? `${user.firstName?.charAt(0)}${user.lastName?.charAt(0)}`.toUpperCase()
+                  : "U"}
               </div>
+
               <div>
-                <div style={{ fontWeight: 700 }}>{user ? `${user.firstName} ${user.lastName}` : "User"}</div>
-                <div style={{ fontSize: 12, color: "#666" }}>{user ? user.email : ""}</div>
+                <div style={{ fontWeight: 700 }}>
+                  {user ? `${user.firstName} ${user.lastName}` : "User"}
+                </div>
+                <div style={{ fontSize: 12, color: "#666" }}>
+                  {user ? user.email : ""}
+                </div>
               </div>
             </div>
-            <hr style={{ border: "none", borderTop: "1px solid #eee", margin: "8px 0" }} />
-            <button onClick={handleLogout} style={{ width: "100%", padding: "8px 10px", background: "#e53e3e", color: "#fff", border: "none", borderRadius: 6, cursor: "pointer" }}>
+
+            <hr style={{ border: "none", borderTop: "1px solid #eee" }} />
+
+            <button
+              onClick={handleLogout}
+              style={{
+                width: "100%",
+                padding: "8px",
+                background: "#e53e3e",
+                color: "#fff",
+                border: "none",
+                borderRadius: 6,
+                cursor: "pointer",
+                marginTop: "8px",
+              }}
+            >
               Logout
             </button>
           </div>
