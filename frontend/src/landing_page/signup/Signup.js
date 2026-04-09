@@ -74,8 +74,8 @@ const Signup = () => {
     };
 
     return (
-        <div className="signup-container">
-            <div className="signup-box">
+        <div className="signup-container" style={{ marginTop: "26px" }} >
+            <div className="signup-box mt-4">
                 <div className="signup-header">
                     <h1>StockEra</h1>
                     <p>Create Your Account</p>

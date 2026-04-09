@@ -1,79 +1,216 @@
-import React from 'react'
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import { useForm } from "react-hook-form";
+// import toast, { Toaster } from 'react-hot-toast';
 
-function CreateTicket() {
-    return (
-        <div className='container p-5'>
-            <div className='row'>
-                <h1>To create a ticket, select a relevant topic</h1>
-                <div className='col-4 p-3'>
-                    <p style={{ marginTop: "2rem", marginLeft: "2px", marginBottom: "2rem" }}><i class="fa fa-plus-circle" aria-hidden="true"></i> Account Opening</p>
-                    <ul className='all-link'>
-                        <li><a href='#'>Online Account Opening</a></li>
-                        <li><a href='#'>Offline Account Opening</a></li>
-                        <li><a href='#'>Company, Partnership and HUF Account Opening</a></li>
-                        <li><a href='#'>NRI Account Opening</a></li>
-                        <li><a href='#'>Charges at Zerodha</a></li>
-                        <li><a href='#'>Zerodha IDFC FIRST Bank 3-in-1 Account</a></li>
-                    </ul>
-                </div>
-                <div className='col-4 p-3'>
-                    <p style={{ marginTop: "2rem", marginLeft: "2px", marginBottom: "2rem" }}><i class="fa fa-user" aria-hidden="true"></i> Your Zerodha Account</p>
-                    <ul className='all-link'>
-                        <li><a href='#'>Login Credentials</a></li>
-                        <li><a href='#'>Account Modification and Segment Addition</a></li>
-                        <li><a href='#'>DP ID and bank details</a></li>
-                        <li><a href='#'>Your Profile</a></li>
-                        <li><a href='#'>Transfer and conversion of shares</a></li>
-                    </ul>
-                </div>
-                <div className='col-4 p-3'>
-                    <p style={{ marginTop: "2rem", marginLeft: "2px", marginBottom: "2rem" }}><i class="fa fa-bar-chart" aria-hidden="true"></i> Kite</p>
-                    <ul className='all-link'>
-                        <li><a href='#'>Margin/leverage, Product and Orders</a></li>
-                        <li><a href='#'>Kite Web and Mobile</a></li>
-                        <li><a href='#'>Corporate Actions</a></li>
-                        <li><a href='#'>Sentinel</a></li>
-                        <li><a href='#'>Kite API</a></li>
-                        <li><a href='#'>Pi and other platforms</a></li>
-                    </ul>
-                </div>
+// function CreateTicket() {
+//     const [showModal, setShowModal] = useState(false);
+//     const [selectedTopic, setSelectedTopic] = useState("");
 
-                <div className='row'>
-                    <div className='col-4 p-3'>
-                        <p style={{ marginTop: "2rem", marginLeft: "2px", marginBottom: "2rem" }}><i class="fa fa-credit-card" aria-hidden="true"></i> Funds</p>
-                        <ul className='all-link'>
-                            <li><a href='#'>Adding Funds</a></li>
-                            <li><a href='#'>Fund Withdrawal</a></li>
-                            <li><a href='#'>eMandates</a></li>
-                            <li><a href='#'>Adding Bank Accounts</a></li>
-                        </ul>
-                    </div>
-                    <div className='col-4 p-3'>
-                        <p style={{ marginTop: "2rem", marginLeft: "2px", marginBottom: "2rem" }}><i class="fa fa-dashboard"></i> Console</p>
-                        <ul className='all-link'>
-                            <li><a href='#'>Reports</a></li>
-                            <li><a href='#'>Ledger</a></li>
-                            <li><a href='#'>60 Day Challenge</a></li>
-                            <li><a href='#'>Portfolio</a></li>
-                            <li><a href='#'>IPO</a></li>
-                            <li><a href='#'>Referral Program</a></li>
-                        </ul>
-                    </div>
-                    <div className='col-4 p-3'>
-                        <p style={{ marginTop: "2rem", marginLeft: "2px", marginBottom: "2rem" }}> <i class="fa fa-btc"></i> Coin</p>
-                        <ul className='all-link'>
-                            <li><a href='#'>Understanding Mutual Funds</a></li>
-                            <li><a href='#'>About Coin</a></li>
-                            <li><a href='#'>Buying and Selling through Coin</a></li>
-                            <li><a href='#'>Starting an SIP</a></li>
-                            <li><a href='#'>Managing your Portfolio</a></li>
-                            <li><a href='#'>Coin App</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
+//     // React Hook Form setup
+//     const {
+//         register,
+//         handleSubmit,
+//         setValue,
+//         reset,
+//         formState: { errors },
+//     } = useForm();
 
-export default CreateTicket;
+//     const ticketCategories = [
+//         {
+//             title: "Account Opening",
+//             icon: "fa-plus-circle",
+//             links: ["Online Account Opening", "Offline Account Opening", "Charges & Fees", "KYC Status"]
+//         },
+//         {
+//             title: "Your Account",
+//             icon: "fa-user",
+//             links: ["Login Credentials", "Bank Details Update", "Profile Modification", "Nominee Addition"]
+//         },
+//         {
+//             title: "Trading (Kite)",
+//             icon: "fa-bar-chart",
+//             links: ["How to Buy/Sell", "Order Types", "Margin & Leverage", "Kite Mobile App"]
+//         },
+//         {
+//             title: "Funds & Payments",
+//             icon: "fa-credit-card",
+//             links: ["Adding Funds (UPI/Net)", "Withdrawal Process", "Failed Transactions", "Bank Account Issues"]
+//         },
+//         {
+//             title: "Portfolio (Console)",
+//             icon: "fa-dashboard",
+//             links: ["Holdings & P&L", "Tax Reports", "IPO Application", "Corporate Actions"]
+//         },
+//         {
+//             title: "Mutual Funds (Coin)",
+//             icon: "fa-btc",
+//             links: ["Starting an SIP", "Buying Mutual Funds", "Managing Portfolio", "Coin App Support"]
+//         }
+//     ];
+
+//     // Modal Open Handler
+//     const handleLinkClick = (topic) => {
+//         setSelectedTopic(topic);
+//         setValue("topic", topic); // Hidden ya Readonly field me value set karne ke liye
+//         setShowModal(true);
+//     };
+
+//     // Form Submission Logic (from your code)
+//     const onSubmit = async (data) => {
+//         const userInfo = {
+//             topic: data.topic,
+//             name: data.name,
+//             email: data.email,
+//             message: data.message
+//         };
+//         try {
+//             await axios.post("https://getform.io/f/broggjqa", userInfo);
+//             toast.success("Ticket created successfully!");
+//             setShowModal(false);
+//             reset(); // Form clear karne ke liye
+//         } catch (error) {
+//             console.log(error);
+//             toast.error("Failed to create ticket. Try again.");
+//         }
+//     };
+
+//     return (
+//         <>
+//             <Toaster />
+//             <style>
+//                 {`
+//                 .ticket-section { background: #fff; padding: 60px 0; font-family: 'Inter', sans-serif; }
+//                 .category-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #333; display: flex; align-items: center; }
+//                 .category-title i { margin-right: 10px; color: #666; }
+//                 .link-list { list-style: none; padding: 0; }
+//                 .link-list li { margin-bottom: 8px; }
+//                 .link-list a { text-decoration: none; color: #387ed1; font-size: 0.95rem; cursor: pointer; transition: 0.2s; }
+//                 .link-list a:hover { color: #d32f2f; text-decoration: underline; }
+
+//                 /* Popup / Modal Styling */
+//                 .modal-overlay {
+//                     position: fixed;
+//                     top: 0; left: 0; width: 100%; height: 100%;
+//                     background: rgba(0,0,0,0.5);
+//                     display: flex; justify-content: center; align-items: center;
+//                     z-index: 10000;
+//                     backdrop-filter: blur(4px);
+//                 }
+//                 .ticket-modal {
+//                     background: white;
+//                     width: 100%;
+//                     max-width: 450px;
+//                     padding: 25px;
+//                     border-radius: 15px;
+//                     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+//                     position: relative;
+//                 }
+//                 .close-btn {
+//                     position: absolute;
+//                     top: 15px; right: 20px;
+//                     font-size: 1.5rem; cursor: pointer; color: #999;
+//                 }
+//                 .form-group { margin-bottom: 15px; }
+//                 .form-group label { display: block; font-weight: 500; margin-bottom: 5px; color: #555; font-size: 0.9rem;}
+//                 .input-field {
+//                     width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none;
+//                 }
+//                 .input-field:focus { border-color: #387ed1; }
+//                 .error-msg { color: #d32f2f; font-size: 0.75rem; margin-top: 3px; }
+//                 .submit-btn {
+//                     width: 100%; background: #222; color: white; border: none;
+//                     padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer;
+//                     transition: 0.3s; margin-top: 10px;
+//                 }
+//                 .submit-btn:hover { background: #444; }
+//                 `}
+//             </style>
+
+//             <div className='container ticket-section'>
+//                 <h2 className='text-center mb-5 text-muted'>To create a ticket, select a relevant topic</h2>
+//                 <div className='row'>
+//                     {ticketCategories.map((category, index) => (
+//                         <div key={index} className='col-lg-4 col-md-6 mb-4'>
+//                             <div className='p-3'>
+//                                 <p className='category-title'>
+//                                     <i className={`fa ${category.icon}`}></i> {category.title}
+//                                 </p>
+//                                 <ul className='link-list'>
+//                                     {category.links.map((link, i) => (
+//                                         <li key={i}>
+//                                             <a onClick={() => handleLinkClick(link)}>{link}</a>
+//                                         </li>
+//                                     ))}
+//                                 </ul>
+//                             </div>
+//                         </div>
+//                     ))}
+//                 </div>
+//             </div>
+
+//             {/* Popup Modal Form */}
+//             {showModal && (
+//                 <div className='modal-overlay'>
+//                     <div className='ticket-modal'>
+//                         <span className='close-btn' onClick={() => setShowModal(false)}>&times;</span>
+//                         <h4 className='mb-4 font-bold'>Create Support Ticket</h4>
+
+//                         <form onSubmit={handleSubmit(onSubmit)}>
+//                             {/* Extra Input: Selected Topic */}
+//                             <div className='form-group'>
+//                                 <label>Selected Topic</label>
+//                                 <input
+//                                     {...register("topic")}
+//                                     className='input-field'
+//                                     style={{ background: '#f4f4f4', cursor: 'not-allowed' }}
+//                                     readOnly
+//                                 />
+//                             </div>
+
+//                             <div className='form-group'>
+//                                 <label>Full Name</label>
+//                                 <input
+//                                     {...register("name", { required: "Name is required" })}
+//                                     className='input-field'
+//                                     placeholder='Your Name'
+//                                 />
+//                                 {errors.name && <p className='error-msg'>{errors.name.message}</p>}
+//                             </div>
+
+//                             <div className='form-group'>
+//                                 <label>Email Address</label>
+//                                 <input
+//                                     {...register("email", {
+//                                         required: "Email is required",
+//                                         pattern: { value: /^\S+@\S+$/i, message: "Invalid email" }
+//                                     })}
+//                                     className='input-field'
+//                                     placeholder='example@mail.com'
+//                                 />
+//                                 {errors.email && <p className='error-msg'>{errors.email.message}</p>}
+//                             </div>
+
+//                             <div className='form-group'>
+//                                 <label>Describe Issue</label>
+//                                 <textarea
+//                                     {...register("message", { required: "Please describe your problem" })}
+//                                     className='input-field'
+//                                     rows="4"
+//                                     placeholder='How can we help?'
+//                                 ></textarea>
+//                                 {errors.message && <p className='error-msg'>{errors.message.message}</p>}
+//                             </div>
+
+//                             <button type='submit' className='submit-btn'>
+//                                 Send Message
+//                             </button>
+//                         </form>
+//                     </div>
+//                 </div>
+//             )}
+//         </>
+//     );
+// }
+
+// export default CreateTicket;

@@ -1,31 +1,50 @@
 import React from 'react'
 
 function PriceHero() {
-    return ( 
-        <div className='container text-center mt-5'>
-            <div className='p-5'>
-                <h1>Pricing</h1>
-                <h6 className='p-4 text-muted'>Free equality investments and flat &#8377; 20 trady and F&amp;O trades</h6>
-            </div>
-            <div className='row border-top'>
-                <div className='col-4 mt-5'>
-                    <img src='media/images/pricing0.svg' style={{width: "70%"}}/>
-                    <h3>Free equity delivery</h3>
-                    <p className='text-muted p-3'>All equity delivery investments (NSE, BSE), are absolutely free — &#8377; 0 brokerage.</p>
+    return (
+        <div>
+            <div className='container text-center' style={{ marginTop: "26px" }} >
+                <div className='p-5 mt-3'>
+                    <h1>Pricing</h1>
+                    <h5 className='p-3 text-muted'>
+                        Simple and transparent pricing for everyone
+                    </h5>
+                    <p className='text-muted'>
+                        Enjoy free equity investments and a flat ₹20 per trade for intraday and F&O.
+                    </p>
                 </div>
-                <div className='col-4 mt-5'>
-                    <img src='media/images/pricing20.svg' style={{width: "70%"}}/>
-                    <h3>Intraday and F&amp;O trades</h3>
-                    <p className='text-muted p-3'>Flat &#8377; 20 or 0.03% (whichever is lower) per executed order on intraday trades across equity, currency, and commodity trades. Flat &#8377; 20 on all option trades.</p>
+                <div className='row border-top'>
+                    <div className='col-4 mt-5'>
+                        <img src='media/images/pricing0.svg' style={{ width: "70%" }} />
+                        <h3>Free Equity Delivery</h3>
+                        <p className='text-muted p-3' style={{ fontSize: "13px" }}>
+                            Learn and explore equity delivery investments with zero brokerage.
+                            Designed to help beginners understand long-term investing easily.
+                        </p>
+                    </div>
+
+                    <div className='col-4 mt-5'>
+                        <img src='media/images/pricing20.svg' style={{ width: "70%" }} />
+                        <h3>Intraday & F&O Trades</h3>
+                        <p className='text-muted p-3' style={{ fontSize: "13px" }}>
+                            Experience intraday and F&O trading with a simple flat fee model.
+                            This section demonstrates how trading charges typically work.
+                        </p>
+                    </div>
+
+                    <div className='col-4 mt-5'>
+                        <img src='media/images/pricing0.svg' style={{ width: "70%" }} />
+                        <h3>Direct Mutual Funds</h3>
+                        <p className='text-muted p-3' style={{ fontSize: "13px" }}>
+                            Explore mutual fund investments with no extra charges.
+                            Built to help users learn how fund investments work in a simple way.
+                        </p>
+                    </div>
                 </div>
-                <div className='col-4 mt-5'>
-                    <img src='media/images/pricing0.svg' style={{width: "70%"}}/>
-                    <h3>Free direct MF</h3>
-                    <p className='text-muted p-3'>All direct mutual fund investments are absolutely free — &#8377; 0 commissions & DP charges.</p>
-                </div>
+                <hr style={{ margin: "0px", opacity: "0.07" }} />
             </div>
         </div>
-     );
+    );
 }
 
 export default PriceHero;

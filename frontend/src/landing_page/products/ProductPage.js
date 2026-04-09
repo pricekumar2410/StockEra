@@ -10,38 +10,42 @@ function ProductPage() {
             <ProductHero />
             <LeftSection
                 imageURL="media/images/kite.png"
-                productName="Kite"
-                productDescription="Our ultra-fast flagship trading platform with streaming market data, advanced charts, an elegant UI, and more. Enjoy the Kite experience seamlessly on your Android and iOS devices."
+                productName="StockEra Web"
+                productDescription="A simple and fast web-based trading platform designed for beginners. It allows users to explore stocks, view basic charts, and understand how trading works in a clean and easy interface. Built for learning and smooth user experience."
                 tryDemo=""
                 learnMore=""
                 googlePlay=""
                 appStore=""
             />
+
             <RightSection
                 imageURL="media/images/console.png"
-                productName="Console"
-                productDescription="The central dashboard for your Zerodha account. Gain insights into your trades and investments with in-depth reports and visualisations."
+                productName="StockEra Dashboard"
+                productDescription="A central dashboard to track your investments and activity in one place. It provides simple insights, basic reports, and easy-to-understand data to help users learn how to manage their portfolio."
                 tryDemo=""
             />
+
             <LeftSection
                 imageURL="media/images/coin.png"
-                productName="Coin"
-                productDescription="Buy direct mutual funds online, commission-free, delivered directly to your Demat account. Enjoy the investment experience on your Android and iOS devices."
+                productName="StockEra Funds"
+                productDescription="A beginner-friendly section to explore and learn about mutual funds. Users can understand how fund investments work with a simple and clean interface designed for learning purposes."
                 tryDemo=""
                 learnMore=""
                 googlePlay=""
                 appStore=""
             />
+
             <RightSection
                 imageURL="media/images/kiteconnect.png"
-                productName="Kite Connect API"
-                productDescription="Build powerful trading platforms and experiences with our super simple HTTP/JSON APIs. If you are a startup, build your investment app and showcase it to our clientbase."
+                productName="StockEra API"
+                productDescription="A basic API concept created for learning how trading platforms connect with external applications. It demonstrates how developers can build simple features and integrate services."
                 tryDemo=""
             />
+
             <LeftSection
                 imageURL="media/images/varsity.png"
-                productName="Varsity mobile"
-                productDescription="An easy to grasp, collection of stock market lessons with in-depth coverage and illustrations. Content is broken down into bite-size cards to help you learn on the go."
+                productName="StockEra Learn"
+                productDescription="An easy-to-understand learning section that explains stock market basics in simple language. Content is divided into small parts to help beginners learn step by step."
                 tryDemo=""
                 learnMore=""
                 googlePlay=""

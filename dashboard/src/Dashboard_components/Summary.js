@@ -9,7 +9,7 @@ const Summary = () => {
   return (
     <>
       <div className="username">
-        <h6>Hi, {userName}!</h6>
+        <h6 >Hi, <span style={{ color: "red" }}>{userName}!</span></h6>
         <hr className="divider" />
       </div>
 

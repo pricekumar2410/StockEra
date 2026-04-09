@@ -3,12 +3,12 @@ import AboutHero from './AboutHero';
 import Auother from './Auother';
 
 function AboutPage() {
-    return ( 
+    return (
         <>
-        <AboutHero />
-        <Auother />
+            <AboutHero />
+            <Auother />
         </>
-     );
+    );
 }
 
 export default AboutPage;

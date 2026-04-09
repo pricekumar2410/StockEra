@@ -38,7 +38,7 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
+        <div className="login-container" style={{ marginTop: "26px" }} >
             <div className="login-box">
                 <div className="login-header">
                     <h1>StockEra</h1>
