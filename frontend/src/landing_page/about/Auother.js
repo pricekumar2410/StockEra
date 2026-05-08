@@ -85,7 +85,7 @@ box-shadow: 0 0 45px red;
                     {/* Member 1 */}
                     <div className="team-card">
                         <div className="img-box">
-                            <img src="media/images/PrinceK.jpg" alt="Prince Kumar" />
+                            <img src="media/images/vindesh-photo.png" alt="Prince Kumar" />
                         </div>
                         <div className="card-content">
                             <h4 style={{ color: "black" }}>Vindesh Shukla</h4>
@@ -101,7 +101,7 @@ box-shadow: 0 0 45px red;
                     {/* Member 2 */}
                     <div className="team-card">
                         <div className="img-box">
-                            <img src="media/images/member2.jpg" alt="Vikram Singh" />
+                            <img src="media/images/sumit-photo.png" alt="Sumit Singh" />
                         </div>
                         <div className="card-content">
                             <h4 style={{ color: "black" }}>Sumit Kumar Singh</h4>
@@ -117,7 +117,7 @@ box-shadow: 0 0 45px red;
                     {/* Member 3 */}
                     <div className="team-card">
                         <div className="img-box">
-                            <img src="media/images/member3.jpg" alt="Nisha Rao" />
+                            <img src="media/images/dev-photo.png" alt="Nisha Rao" />
                         </div>
                         <div className="card-content">
                             <h4 style={{ color: "black" }}>Dev Narayan Singh</h4>

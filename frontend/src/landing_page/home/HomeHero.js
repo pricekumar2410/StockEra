@@ -25,6 +25,18 @@ border-radius: 5px;
 .HomeHeroMainDiv:hover p{
 color: white;
     }
+.homesignup{
+    cursor: "pointer";
+    font-weight: 600;
+    background: blue;
+    color: white;
+    }
+    .homesignup:hover{
+    background: white;
+    border: 2px solid blue;
+    color: red;
+    box-shadow: 0 0 25px red;
+    }
 
     `}
             </style>
@@ -36,8 +48,8 @@ color: white;
                         <p>Simple and secure platform to invest in stocks, mutual funds and ETFs.</p>
                         <button
                             onClick={handleSignup}
-                            className="p-2 btn btn-primary fs-5 mt-4"
-                            style={{ maxWidth: "10rem", margin: "0 auto", cursor: "pointer", padding: "10px 30px !important" }}
+                            className="btn mt-3 px-4 py-2 fs-5 homesignup"
+                            style={{ width: "12rem", marginLeft: "30rem" }}
                         >
                             Signup now
                         </button>
