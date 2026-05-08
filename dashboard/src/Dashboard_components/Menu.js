@@ -37,6 +37,10 @@ const Menu = () => {
     setIsProfileDropdownOpen((prev) => !prev);
   };
 
+  const homeHandleclick = () => {
+    window.location.href = `https://stockera-frontend.onrender.com/`;
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -55,6 +59,12 @@ const Menu = () => {
       <div className="menus" style={{ position: "relative" }}>
         <ul>
           <li>
+            <Link to="/" onClick={homeHandleclick} style={{ textDecoration: "none" }}>
+              <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>Home</p>
+            </Link>
+          </li>
+
+          <li>
             <Link to="/" onClick={() => handleMenuClick(0)} style={{ textDecoration: "none" }}>
               <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>Dashboard</p>
             </Link>
@@ -72,11 +82,11 @@ const Menu = () => {
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link to="/positions" onClick={() => handleMenuClick(3)} style={{ textDecoration: "none" }}>
               <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>Positions</p>
             </Link>
-          </li>
+          </li> */}
 
           <li>
             <Link to="/funds" onClick={() => handleMenuClick(4)} style={{ textDecoration: "none" }}>
